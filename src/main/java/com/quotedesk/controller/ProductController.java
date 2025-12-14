@@ -1,40 +1,43 @@
 package com.quotedesk.controller;
 
-import com.quotedesk.model.Product;
-import com.quotedesk.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.quotedesk.dto.request.CreateProductDto;
+import com.quotedesk.dto.response.ProductResponseDto;
+import com.quotedesk.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/api/products")
 @CrossOrigin(origins = "*")
 public class ProductController {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    public List<ProductResponseDto> getAllProducts() {
+        return productService.getAllProducts();
     }
 
     @PostMapping
-    public Product createProduct(@RequestBody Product product) {
-        return productRepository.save(product);
+    public ProductResponseDto createProduct(@RequestBody CreateProductDto dto) {
+        return productService.createProduct(dto);
     }
 
     @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable Long id, @RequestBody Product product) {
-        Product existing = productRepository.findById(id).orElseThrow();
-        product.setId(existing.getId());
-        return productRepository.save(product);
+    public ProductResponseDto updateProduct(
+            @PathVariable Long id,
+            @RequestBody CreateProductDto dto
+    ) {
+        return productService.updateProduct(id, dto);
     }
 
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable Long id) {
-        productRepository.deleteById(id);
+        productService.deleteProduct(id);
     }
 }
