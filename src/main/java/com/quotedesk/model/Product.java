@@ -11,9 +11,23 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "products")
 @Data
-@Getter
-@Setter
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String make;
+    private String model;
+    private String description;
+
+    private Integer quantity;
+
+    private BigDecimal unitPrice;
+    private BigDecimal totalPrice;
+
+    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime updatedAt = LocalDateTime.now();
+
 
     public Long getId() {
         return id;
@@ -23,34 +37,68 @@ public class Product {
         this.id = id;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public String getMake() {
+        return make;
+    }
 
-    private String make;
-    private String model;
-    private String country;
-    private String gas;
-    private String scope;
-    private String description;
+    public void setMake(String make) {
+        this.make = make;
+    }
 
-    private Integer quantity;
+    public String getModel() {
+        return model;
+    }
 
-    private BigDecimal exWorkCost;
-    private BigDecimal uaeVat;
-    private BigDecimal fitting;
-    private BigDecimal trp;
-    private BigDecimal cdVat;
-    private BigDecimal uC;
-    private BigDecimal tC;
-    private BigDecimal levie;
+    public void setModel(String model) {
+        this.model = model;
+    }
 
-    private BigDecimal subTotal;
-    private BigDecimal quotedUnitPrice;
-    private BigDecimal totalPrice;
-    private BigDecimal difference;
+    public String getDescription() {
+        return description;
+    }
 
-    private LocalDateTime createdAt = LocalDateTime.now();
-    private LocalDateTime updatedAt = LocalDateTime.now();
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public BigDecimal getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(BigDecimal unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }
 
