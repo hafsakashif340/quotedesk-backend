@@ -80,4 +80,11 @@ public class ProductService {
 
         return dto;
     }
+
+    public List<ProductResponseDto> searchProducts(String query) {
+        return productRepository.findByDescriptionContainingIgnoreCase(query)
+                .stream()
+                .map(this::mapToResponseDto) // Assuming you have a mapping helper
+                .collect(Collectors.toList());
+    }
 }

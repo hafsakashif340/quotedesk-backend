@@ -9,7 +9,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
-@CrossOrigin(origins = "*")
+@CrossOrigin(
+        origins = "${frontend.url}"
+)
 public class ProductController {
 
     private final ProductService productService;
@@ -39,5 +41,10 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
+    }
+
+    @GetMapping("/search")
+    public List<ProductResponseDto> searchProducts(@RequestParam String description) {
+        return productService.searchProducts(description);
     }
 }

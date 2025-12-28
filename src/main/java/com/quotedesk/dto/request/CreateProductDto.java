@@ -32,6 +32,9 @@ public class CreateProductDto {
     @Positive(message = "Unit price must be greater than 0")
     private BigDecimal unitPrice;
 
+    private String country;
+    private String gas;
+
     public String getMake() {
         return make;
     }

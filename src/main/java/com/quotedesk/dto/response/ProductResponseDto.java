@@ -16,6 +16,9 @@ public class ProductResponseDto {
     private BigDecimal unitPrice;
     private BigDecimal totalPrice;
 
+    private String country;
+    private String gas;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     public Long getId() {
